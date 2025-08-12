@@ -23,10 +23,10 @@ It detects your storage type, analyzes system performance, and recommends action
 
 ## 📸 Screenshots
 ### Analysis Mode
-![Analysis Screenshot](https://drive.google.com/file/d/1hfvLf1-7kbY_dRCvuLUzb-pufSue1ONa/view?usp=sharing)
+![Analysis Screenshot](https://drive.google.com/file/d/1hfvLf1-7kbY_dRCvuLUzb-pufSue1ONa/view)
 
 ### Recommendations
-![Recommendation Screenshot](https://drive.google.com/file/d/17Ukx6KlZ6Mb9NDbICUTkHOZL3GHHgl--/view?usp=sharing)
+![Recommendation Screenshot](https://drive.google.com/file/d/17Ukx6KlZ6Mb9NDbICUTkHOZL3GHHgl--/view)
 
 ---
 
