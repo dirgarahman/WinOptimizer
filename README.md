@@ -23,10 +23,10 @@ It detects your storage type, analyzes system performance, and recommends action
 
 ## 📸 Screenshots
 ### Analysis Mode
-![Analysis Screenshot](https://drive.google.com/file/d/1hfvLf1-7kbY_dRCvuLUzb-pufSue1ONa/view)
+![Analysis Screenshot](images/analyze.png)
 
 ### Recommendations
-![Recommendation Screenshot](https://drive.google.com/file/d/17Ukx6KlZ6Mb9NDbICUTkHOZL3GHHgl--/view)
+![Recommendation Screenshot](images/cleaning.png)
 
 ---
 
@@ -53,6 +53,9 @@ It detects your storage type, analyzes system performance, and recommends action
 
 # Force aggressive cleanup
 .\WinOptimizer.ps1 aggressive
+
+# Force balance cleanup
+.\WinOptimizer.ps1 balanced
 
 # Rollback changes
 .\WinOptimizer.ps1 rollback
