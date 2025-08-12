@@ -1,7 +1,7 @@
 # WinOptimizer 💻✨
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)
-![License](https://img.shields.io/github/license/yourusername/WinOptimizer)
+![License](https://img.shields.io/github/license/dirgarahman/WinOptimizer)
 ![Platform](https://img.shields.io/badge/Platform-Windows-green.svg)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
@@ -23,10 +23,10 @@ It detects your storage type, analyzes system performance, and recommends action
 
 ## 📸 Screenshots
 ### Analysis Mode
-![Analysis Screenshot](https://via.placeholder.com/800x400.png?text=WinOptimizer+Analysis+Mode)
+![Analysis Screenshot](https://drive.google.com/file/d/1hfvLf1-7kbY_dRCvuLUzb-pufSue1ONa/view?usp=sharing)
 
 ### Recommendations
-![Recommendation Screenshot](https://via.placeholder.com/800x400.png?text=WinOptimizer+Recommendation)
+![Recommendation Screenshot](https://drive.google.com/file/d/17Ukx6KlZ6Mb9NDbICUTkHOZL3GHHgl--/view?usp=sharing)
 
 ---
 
@@ -70,5 +70,5 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 ---
 
-**Author:** [Your Name](https://github.com/yourusername)  
+**Author:** [Dirga Rahman](https://github.com/dirgarahman)  
 **Version:** 1.0.0
