@@ -6,70 +6,68 @@
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
 ## 📌 Overview
-WinOptimizer is a **PowerShell-based system analysis and optimization tool** for Windows.  
-It detects your storage type, analyzes system performance, and recommends actions such as cleanup, service tuning, and startup app management.
+WinOptimizer is a PowerShell-based Windows system performance analyzer and optimizer.  
+It scans your system to detect storage type, startup apps, key services, disk usage, CPU & RAM usage, and recommends or applies optimizations to boost performance.
 
 ---
 
 ## 🚀 Features
-- **Automatic hardware detection** (SSD / HDD)
-- **Startup application analysis**
-- **Service status check** (SysMain, WSearch, etc.)
-- **Disk space and temp folder analysis**
-- **Paging file usage report**
-- **Recommendation engine** — suggests the best optimization level (aggressive / balanced / rollback)
+- Auto-detects SSD/HDD storage type  
+- Analyzes startup applications and service status  
+- Measures temp folder size, paging file usage, and CPU/RAM availability  
+- Provides recommendations (auto mode) or applies optimizations with balanced, aggressive, or rollback modes
 
 ---
 
 ## 📸 Screenshots
-### Analysis Mode
-![Analysis Screenshot](images/analyze.png)
+### Analysis Mode  
+![Analysis Screenshot](images/analysis.png)
 
-### Recommendations
-![Recommendation Screenshot](images/cleaning.png)
+### Recommendation Output  
+![Recommendation Screenshot](images/recommendation.png)
 
 ---
 
 ## 📂 Installation
-1. Download the repository or clone it:
-   ```powershell
-   git clone https://github.com/yourusername/WinOptimizer.git
-   ```
-2. Navigate to the folder:
-   ```powershell
-   cd WinOptimizer
-   ```
-3. Run the script in **analysis mode**:
-   ```powershell
-   .\WinOptimizer.ps1 auto
-   ```
+Clone the repository:
+
+```powershell
+git clone https://github.com/dirgarahman/WinOptimizer.git
+cd WinOptimizer
+```
 
 ---
 
 ## ⚙️ Usage
 ```powershell
-# Analyze system performance and get recommendations
+# Run in auto mode to analyze and get recommendations:
 .\WinOptimizer.ps1 auto
 
-# Force aggressive cleanup
-.\WinOptimizer.ps1 aggressive
-
-# Force balance cleanup
+# Run in balanced mode for mild optimization (clears temp files, disables diagtrack):
 .\WinOptimizer.ps1 balanced
 
-# Rollback changes
+# Run in aggressive mode for full cleanup (disables heavy services, clears temp):
+.\WinOptimizer.ps1 aggressive
+
+# Rollback changes:
 .\WinOptimizer.ps1 rollback
 ```
 
 ---
 
-## 📜 License
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+## 🛠 Contribution
+Feel free to fork the repo and send pull requests. Please make sure to:
+
+ - vWrite clear commit messages
+
+ - Test your changes thoroughly
+
+ - Follow PowerShell scripting best practices
 
 ---
 
-## 🤝 Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
+## 📜 License
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 
