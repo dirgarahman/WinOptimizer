@@ -10,13 +10,19 @@
       - aggressive: Apply aggressive optimization settings.
       - rollback  : Restore settings to defaults.
 
+.AUTHOR
+    Dirga Rahman
+
+.GITHUB
+    https://github.com/dirgarahman/WinOptimizer
+
 .EXAMPLE
     .\WinOptimizer.ps1 auto
 #>
 
 param (
     [Parameter(Mandatory=$true)]
-    [ValidateSet("auto","aggressive","rollback")]
+    [ValidateSet("auto","balanced","aggressive","rollback")]
     [string]$mode
 )
 
@@ -28,13 +34,9 @@ function Get-TempFolderSize {
 
 Write-Host "🔍 Analyzing system performance and bloat..." -ForegroundColor Cyan
 
-# Detect primary storage type
+# Detect storage type - simplified for demo
 $osDrive = Get-PhysicalDisk | Where-Object { $_.DeviceID -eq 0 }
-if (-not $osDrive) {
-    $storageType = "Unknown"
-} else {
-    $storageType = $osDrive.MediaType
-}
+$storageType = if ($osDrive) { $osDrive.MediaType } else { "Unknown" }
 
 # Gather metrics
 $startupApps = (Get-CimInstance Win32_StartupCommand).Count
@@ -48,7 +50,6 @@ $pagingFileUsage = (Get-CimInstance Win32_PageFileUsage).CurrentUsage
 $cpuUsage = (Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue
 $availRAM = [math]::Round((Get-Counter '\Memory\Available MBytes').CounterSamples.CookedValue, 0)
 
-# Display summary
 Write-Host "Storage type: $storageType"
 Write-Host "Startup Applications: $startupApps"
 Write-Host "Service SysMain status: $sysMainStatus"
@@ -58,10 +59,9 @@ Write-Host "Service dmwappushservice status: $dmwapPushStatus"
 Write-Host "Free disk space on C: $freeDiskC GB"
 Write-Host "Temp folder size: $tempSize MB"
 Write-Host "Paging file usage: $pagingFileUsage MB"
-Write-Host "Current CPU usage: {0:N1}%%" -f $cpuUsage
+Write-Host ("Current CPU usage: {0:N1}%%" -f $cpuUsage)
 Write-Host "Available RAM: $availRAM MB"
 
-# Mode actions
 switch ($mode) {
     "auto" {
         Write-Host "`n➡ Based on this info:" -ForegroundColor Yellow
@@ -71,9 +71,17 @@ switch ($mode) {
             Write-Host "Recommendation: System looks balanced. Minimal cleanup suggested."
         }
     }
+    "balanced" {
+        Write-Host "✨ Applying balanced optimization..." -ForegroundColor Green
+        # Mild cleanup - clear temp and disable diagtrack only
+        Remove-Item -Path ([IO.Path]::GetTempPath() + "*") -Recurse -Force -ErrorAction SilentlyContinue
+        Stop-Service -Name "DiagTrack" -Force
+        Set-Service -Name "DiagTrack" -StartupType Disabled
+        Write-Host "✅ Balanced optimization applied."
+    }
     "aggressive" {
         Write-Host "⚡ Applying aggressive optimization..." -ForegroundColor Red
-        # Disable unnecessary services
+        # Disable unnecessary heavy services
         Stop-Service -Name "SysMain" -Force
         Set-Service -Name "SysMain" -StartupType Disabled
         Stop-Service -Name "WSearch" -Force
