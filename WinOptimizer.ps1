@@ -17,6 +17,7 @@
     https://github.com/dirgarahman/WinOptimizer
 
 .EXAMPLE
+    Set-ExecutionPolicy Bypass -Scope Process -Force
     .\WinOptimizer.ps1 auto
 #>
 
@@ -32,7 +33,7 @@ function Get-TempFolderSize {
     return [math]::Round($tempSize / 1MB, 2)
 }
 
-Write-Host "🔍 Analyzing system performance and bloat..." -ForegroundColor Cyan
+Write-Host "Analyzing system performance and bloat..." -ForegroundColor Cyan
 
 # Detect storage type - simplified for demo
 $osDrive = Get-PhysicalDisk | Where-Object { $_.DeviceID -eq 0 }
@@ -64,7 +65,7 @@ Write-Host "Available RAM: $availRAM MB"
 
 switch ($mode) {
     "auto" {
-        Write-Host "`n➡ Based on this info:" -ForegroundColor Yellow
+        Write-Host "Based on this info:" -ForegroundColor Yellow
         if ($startupApps -gt 5 -or $tempSize -gt 500 -or $sysMainStatus -eq "Running" -or $wSearchStatus -eq "Running") {
             Write-Host "Recommendation: Aggressive cleanup is suggested."
         } else {
@@ -72,15 +73,15 @@ switch ($mode) {
         }
     }
     "balanced" {
-        Write-Host "✨ Applying balanced optimization..." -ForegroundColor Green
+        Write-Host "Applying balanced optimization..." -ForegroundColor Green
         # Mild cleanup - clear temp and disable diagtrack only
         Remove-Item -Path ([IO.Path]::GetTempPath() + "*") -Recurse -Force -ErrorAction SilentlyContinue
         Stop-Service -Name "DiagTrack" -Force
         Set-Service -Name "DiagTrack" -StartupType Disabled
-        Write-Host "✅ Balanced optimization applied."
+        Write-Host "Balanced optimization applied."
     }
     "aggressive" {
-        Write-Host "⚡ Applying aggressive optimization..." -ForegroundColor Red
+        Write-Host "Applying aggressive optimization..." -ForegroundColor Red
         # Disable unnecessary heavy services
         Stop-Service -Name "SysMain" -Force
         Set-Service -Name "SysMain" -StartupType Disabled
@@ -92,10 +93,10 @@ switch ($mode) {
         Set-Service -Name "dmwappushservice" -StartupType Disabled -ErrorAction SilentlyContinue
         # Clear temp files
         Remove-Item -Path ([IO.Path]::GetTempPath() + "*") -Recurse -Force -ErrorAction SilentlyContinue
-        Write-Host "✅ Aggressive optimization applied."
+        Write-Host "Aggressive optimization applied."
     }
     "rollback" {
-        Write-Host "⏪ Rolling back to default settings..." -ForegroundColor Green
+        Write-Host "Rolling back to default settings..." -ForegroundColor Green
         Set-Service -Name "SysMain" -StartupType Automatic
         Start-Service -Name "SysMain"
         Set-Service -Name "WSearch" -StartupType Automatic
@@ -104,6 +105,6 @@ switch ($mode) {
         Start-Service -Name "DiagTrack"
         Set-Service -Name "dmwappushservice" -StartupType Automatic -ErrorAction SilentlyContinue
         Start-Service -Name "dmwappushservice" -ErrorAction SilentlyContinue
-        Write-Host "✅ Rollback completed."
+        Write-Host "Rollback completed."
     }
 }
