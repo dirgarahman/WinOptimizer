@@ -40,6 +40,9 @@ cd WinOptimizer
 
 ## ⚙️ Usage
 ```powershell
+# Run bypass scope policy
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
 # Run in auto mode to analyze and get recommendations:
 .\WinOptimizer.ps1 auto
 
